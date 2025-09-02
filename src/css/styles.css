@@ -1,0 +1,119 @@
+:root {
+  --bg: #f7f7f8;
+  --card: #ffffff;
+  --accent: #2b6cb0;
+  --muted: #6b7280;
+  --success: #16a34a;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: system-ui, Segoe UI, Roboto, Arial;
+  margin: 0;
+  background: var(--bg);
+  color: #111827;
+  padding: 24px;
+}
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+.card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.field {
+  margin-bottom: 12px;
+}
+.field-inline {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.field-inline > div {
+  flex: 1;
+}
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+input[type='text'],
+input[type='number'] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+}
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+.workouts-list {
+  margin-top: 12px;
+}
+.workout-item {
+  padding: 8px;
+  border: 1px solid #eef2f7;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+.small {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Indicadores de guardado (status) */
+.status {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: white;
+  background: transparent;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+}
+.status.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.status.success {
+  background: linear-gradient(
+    90deg,
+    rgba(22, 163, 74, 0.95),
+    rgba(16, 185, 129, 0.95)
+  );
+}
+.status.error {
+  background: linear-gradient(
+    90deg,
+    rgba(220, 38, 38, 0.95),
+    rgba(239, 68, 68, 0.95)
+  );
+}

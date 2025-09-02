@@ -1,0 +1,57 @@
+// Utilidades simples para localStorage
+const STORAGE_KEYS = {
+  SETTINGS: 'stwp_settings_v1',
+  WORKOUTS: 'stwp_workouts_v1',
+}
+
+function saveSettings(settings) {
+  localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(settings))
+}
+
+function loadSettings() {
+  const raw = localStorage.getItem(STORAGE_KEYS.SETTINGS)
+  try {
+    return raw ? JSON.parse(raw) : null
+  } catch (err) {
+    console.warn('Invalid settings data, resetting.', err)
+    localStorage.removeItem(STORAGE_KEYS.SETTINGS)
+    return null
+  }
+}
+
+function saveWorkout(entry) {
+  const list = loadWorkouts()
+  list.unshift(entry)
+  localStorage.setItem(STORAGE_KEYS.WORKOUTS, JSON.stringify(list))
+}
+
+function loadWorkouts() {
+  const raw = localStorage.getItem(STORAGE_KEYS.WORKOUTS)
+  try {
+    return raw ? JSON.parse(raw) : []
+  } catch (err) {
+    console.warn('Invalid workouts data, resetting.', err)
+    localStorage.removeItem(STORAGE_KEYS.WORKOUTS)
+    return []
+  }
+}
+
+function clearWorkouts() {
+  localStorage.removeItem(STORAGE_KEYS.WORKOUTS)
+}
+
+// Expose API globally so non-module scripts (index.js) can call them
+window.storageAPI = {
+  saveSettings,
+  loadSettings,
+  saveWorkout,
+  loadWorkouts,
+  clearWorkouts,
+}
+
+// Also define direct globals for backward compatibility with existing calls
+window.saveSettings = saveSettings
+window.loadSettings = loadSettings
+window.saveWorkout = saveWorkout
+window.loadWorkouts = loadWorkouts
+window.clearWorkouts = clearWorkouts

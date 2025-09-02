@@ -1,0 +1,22 @@
+{
+  "name": "simple-training-webpage",
+  "version": "1.0.0",
+  "description": "A simple training webpage for selecting user experience levels, gym equipment, and recording workouts.",
+  "main": "src/js/index.js",
+  "scripts": {
+    "start": "live-server public",
+    "build": "echo 'Build step can be added here.'"
+  },
+  "keywords": [
+    "fitness",
+    "workout",
+    "training",
+    "webpage"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

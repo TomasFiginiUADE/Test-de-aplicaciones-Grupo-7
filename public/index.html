@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simple Training</title>
+    <link rel="stylesheet" href="../src/css/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Simple Training — v1</h1>
+
+      <section class="card" id="settings-section">
+        <h2>Configuración</h2>
+
+        <form id="settings-form">
+          <fieldset class="field" id="experience-fieldset">
+            <legend>Nivel de experiencia</legend>
+            <div id="experience-options">
+              <input
+                id="exp-principiante"
+                type="radio"
+                name="experience"
+                value="principiante"
+              />
+              <label for="exp-principiante">Principiante</label>
+
+              <input
+                id="exp-intermedio"
+                type="radio"
+                name="experience"
+                value="intermedio"
+              />
+              <label for="exp-intermedio">Intermedio</label>
+
+              <input
+                id="exp-avanzado"
+                type="radio"
+                name="experience"
+                value="avanzado"
+              />
+              <label for="exp-avanzado">Avanzado</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field" id="equipment-fieldset">
+            <legend>Equipamiento disponible</legend>
+            <div id="equipment-options">
+              <!-- checkboxes generadas por JS -->
+            </div>
+          </fieldset>
+
+          <div class="actions">
+            <button type="submit" id="save-settings">
+              Guardar configuración
+            </button>
+          </div>
+
+          <div
+            id="settings-status"
+            class="status"
+            aria-live="polite"
+            role="status"
+          ></div>
+        </form>
+      </section>
+
+      <section class="card" id="record-section">
+        <h2>Registrar entrenamiento</h2>
+        <form id="workout-form">
+          <div class="field">
+            <label>Ejercicio</label>
+            <input
+              id="exercise-name"
+              type="text"
+              placeholder="Nombre del ejercicio"
+              required
+            />
+          </div>
+          <div class="field-inline">
+            <div>
+              <label>Peso (kg)</label>
+              <input id="weight" type="number" min="0" step="0.5" value="0" />
+            </div>
+            <div>
+              <label>Repeticiones</label>
+              <input id="reps" type="number" min="1" value="8" required />
+            </div>
+            <div>
+              <label>Series</label>
+              <input id="sets" type="number" min="1" value="3" required />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="add-workout">Añadir registro</button>
+            <button type="button" id="clear-workouts">Borrar historial</button>
+          </div>
+
+          <div
+            id="workout-status"
+            class="status"
+            aria-live="polite"
+            role="status"
+          ></div>
+        </form>
+
+        <div id="workouts-list" class="workouts-list">
+          <!-- Historial renderizado por JS -->
+        </div>
+      </section>
+    </main>
+
+    <script src="../src/js/storage.js" defer></script>
+    <script src="../src/js/index.js" defer></script>
+    <script>
+      // ver todas las claves y valores
+      Object.keys(localStorage).forEach((k) =>
+        console.log(k, localStorage.getItem(k))
+      )
+
+      // parsear y mostrar las claves del proyecto
+      console.log(
+        'settings:',
+        JSON.parse(localStorage.getItem('stwp_settings_v1') || 'null')
+      )
+      console.log(
+        'workouts:',
+        JSON.parse(localStorage.getItem('stwp_workouts_v1') || 'null')
+      )
+      console.log(
+        'workouts (legacy):',
+        JSON.parse(localStorage.getItem('workouts') || 'null')
+      )
+
+      // mostrar workouts en tabla (si es array)
+      console.table(
+        JSON.parse(localStorage.getItem('stwp_workouts_v1') || '[]')
+      )
+    </script>
+  </body>
+</html>
