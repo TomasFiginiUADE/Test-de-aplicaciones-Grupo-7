@@ -63,80 +63,98 @@
             role="status"
           ></div>
         </form>
+
+        <!-- Resumen de selección del usuario -->
+        <div
+          id="settings-summary"
+          class="small"
+          aria-live="polite"
+          style="margin-top: 12px"
+        >
+          Nivel seleccionado: <span id="summary-experience">—</span><br />
+          Equipamiento seleccionado: <span id="summary-equipment">—</span>
+        </div>
       </section>
 
       <section class="card" id="record-section">
-        <h2>Registrar entrenamiento</h2>
-        <form id="workout-form">
+        <h2>Crear rutina</h2>
+
+        <form id="routine-form">
           <div class="field">
-            <label>Ejercicio</label>
+            <label for="routine-name">Nombre de la rutina</label>
             <input
-              id="exercise-name"
+              id="routine-name"
               type="text"
-              placeholder="Nombre del ejercicio"
+              placeholder="Ej: Full Body 1"
               required
             />
           </div>
-          <div class="field-inline">
-            <div>
-              <label>Peso (kg)</label>
-              <input id="weight" type="number" min="0" step="0.5" value="0" />
-            </div>
-            <div>
-              <label>Repeticiones</label>
-              <input id="reps" type="number" min="1" value="8" required />
-            </div>
-            <div>
-              <label>Series</label>
-              <input id="sets" type="number" min="1" value="3" required />
-            </div>
-          </div>
 
-          <div class="actions">
-            <button type="submit" id="add-workout">Añadir registro</button>
-            <button type="button" id="clear-workouts">Borrar historial</button>
+          <fieldset class="field">
+            <legend>Grupos musculares</legend>
+            <div id="muscle-groups">
+              <!-- generados por JS -->
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Ejercicios</legend>
+
+            <!-- encabezados para los inputs de cada columna -->
+            <div
+              class="exercise-headers"
+              style="
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                margin-bottom: 8px;
+              "
+            >
+              <div style="flex: 2; font-weight: 600">Ejercicio</div>
+              <div style="width: 90px; text-align: center; font-weight: 600">
+                Peso
+              </div>
+              <div style="width: 80px; text-align: center; font-weight: 600">
+                Repeticiones
+              </div>
+              <div style="width: 80px; text-align: center; font-weight: 600">
+                Series
+              </div>
+              <div style="width: 40px"></div>
+            </div>
+
+            <div id="exercises-list">
+              <!-- filas de ejercicio generadas por JS -->
+            </div>
+            <div class="actions" style="margin-top: 8px">
+              <button type="button" id="add-exercise">Añadir ejercicio</button>
+            </div>
+          </fieldset>
+
+          <div class="actions" style="margin-top: 12px">
+            <button type="submit" id="save-routine">Guardar rutina</button>
+            <button type="button" id="clear-routines">
+              Borrar todas las rutinas
+            </button>
           </div>
 
           <div
-            id="workout-status"
+            id="routine-status"
             class="status"
             aria-live="polite"
             role="status"
           ></div>
         </form>
 
-        <div id="workouts-list" class="workouts-list">
-          <!-- Historial renderizado por JS -->
+        <h3 style="margin-top: 16px">Rutinas guardadas</h3>
+        <div id="routines-list" class="workouts-list">
+          <!-- renderizado por JS -->
         </div>
       </section>
     </main>
 
     <script src="../src/js/storage.js" defer></script>
+    <script src="../src/js/workouts.js" defer></script>
     <script src="../src/js/index.js" defer></script>
-    <script>
-      // ver todas las claves y valores
-      Object.keys(localStorage).forEach((k) =>
-        console.log(k, localStorage.getItem(k))
-      )
-
-      // parsear y mostrar las claves del proyecto
-      console.log(
-        'settings:',
-        JSON.parse(localStorage.getItem('stwp_settings_v1') || 'null')
-      )
-      console.log(
-        'workouts:',
-        JSON.parse(localStorage.getItem('stwp_workouts_v1') || 'null')
-      )
-      console.log(
-        'workouts (legacy):',
-        JSON.parse(localStorage.getItem('workouts') || 'null')
-      )
-
-      // mostrar workouts en tabla (si es array)
-      console.table(
-        JSON.parse(localStorage.getItem('stwp_workouts_v1') || '[]')
-      )
-    </script>
   </body>
 </html>
