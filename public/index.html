@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Simple Training</title>
-    <link rel="stylesheet" href="/src/css/styles.css" />
+    <!-- ahora apunta a public/css/styles.css -->
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <main class="container">
@@ -64,7 +65,6 @@
           ></div>
         </form>
 
-        <!-- Resumen de selección del usuario -->
         <div
           id="settings-summary"
           class="small"
@@ -92,15 +92,12 @@
 
           <fieldset class="field">
             <legend>Grupos musculares</legend>
-            <div id="muscle-groups">
-              <!-- generados por JS -->
-            </div>
+            <div id="muscle-groups"><!-- generados por JS --></div>
           </fieldset>
 
           <fieldset class="field">
             <legend>Ejercicios</legend>
 
-            <!-- encabezados para los inputs de cada columna -->
             <div
               class="exercise-headers"
               style="
@@ -123,9 +120,7 @@
               <div style="width: 40px"></div>
             </div>
 
-            <div id="exercises-list">
-              <!-- filas de ejercicio generadas por JS -->
-            </div>
+            <div id="exercises-list"><!-- filas generadas por JS --></div>
             <div class="actions" style="margin-top: 8px">
               <button type="button" id="add-exercise">Añadir ejercicio</button>
             </div>
@@ -153,8 +148,9 @@
       </section>
     </main>
 
-    <script src="../src/js/storage.js" defer></script>
-    <script src="../src/js/workouts.js" defer></script>
-    <script src="../src/js/index.js" defer></script>
+    <!-- ahora los scripts se cargan desde public/js -->
+    <script src="/js/storage.js" defer></script>
+    <script src="/js/workouts.js" defer></script>
+    <script src="/js/index.js" defer></script>
   </body>
 </html>
